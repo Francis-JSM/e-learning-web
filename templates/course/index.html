@@ -18,7 +18,7 @@
   .section-one .colored{
     color: #9c6af9;
   }
-  .section-one .container {
+  .section-one .container2 {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -67,8 +67,8 @@
   }
 
   .section-two{
-    padding-left: 160px;
-    padding-right: 60px;
+    /* padding-left: 160px; */
+    /* padding-right: 60px; */
     font-family: "Aileron",sans-serif;
   }
   .section-two .colored{
@@ -112,8 +112,8 @@
   }
 
   .section-three{
-    padding-left: 160px;
-    padding-right: 60px;
+    /* padding-left: 160px; */
+    /* padding-right: 60px; */
     font-family: "Aileron",sans-serif;
   }
 
@@ -122,13 +122,73 @@
     font-weight: 700;
   
 }
+
+.sec-title{
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.second-stack{
+  margin-top: 70px
+}
+.third-stack{
+  margin-top: 140px
+}
+
+@media (max-width: 768px) {
+    .section-one {
+      padding: 50px 0;
+    }
+
+    .section-two {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .section-three {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+
+    .section-one h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .section-one h4 {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.25;
+    padding-bottom: 8px;
+  }
+  .section-one .container2 {
+    flex-direction: column;
+  }
+
+  .section-one .content {
+    flex: 1;
+    padding-left: 0px;
+  }
+  .sec-title{
+  font-size: 35px;
+  font-weight: 700;
+}
+.second-stack,.third-stack{
+  margin-top: 0;
+}
+
+.section-two .btn-elegant {
+    width: 100%;
+  }
+  }
 </style>
 {%endblock head%} {%block body%}
 <!-- Main content -->
 <div class="main-content">
   <!-- Section with text and image -->
   <section class="section-one">
-    <div class="container">
+    <div class="container container2">
       <div class="content">
         <h4 class="colored">Upskilling made easy with our</h4>
         <h2>Intelligently Designed Courses</h2>
@@ -150,10 +210,10 @@
   </section>
 
   <section class="section-two">
-    <h2 class="colored">Explore</h2>
-    <h3 style="font-size: 50px;
-    font-weight: 700;">New Courses</h3>
+    
     <div class="container my-4">
+      <h2 class="colored">Explore</h2>
+    <h3 class="sec-title">New Courses</h3>
   <div class="row">
     {% for course in course %}
     <div class="col-lg-3 col-md-4 col-sm-6">
@@ -198,10 +258,10 @@
   </section>
 
   <section class="section-three">
-    <h3 class="ml-2 mb-4 colored">Learn With</h2>
-    <h2 class ="ml-2 mb-4" style="font-size: 50px;
-    font-weight: 700;">Everything you need</h2>
+
     <div class="container">
+      <h3 class="ml-2 mb-4 colored">Learn With</h2>
+        <h2 class ="ml-2 mb-4 sec-title">Everything you need</h2>
       <!-- Move the heading above the cards and center it -->
       <div class="row justify-content-center">
         <!-- Center the cards -->
@@ -221,7 +281,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4" style="margin-top: 70px">
+        <div class="col-md-4 mb-4 second-stack">
           <div class="card border-0">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6dbx2qXQHu6rbgUdR3RUiii806vvbC7EG6w&usqp=CAU"
@@ -237,7 +297,7 @@
             </div>
           </div>
         </div>
-        <div div class="col-md-4 mb-4" style="margin-top: 140px">
+        <div div class="col-md-4 mb-4 third-stack">
           <div class="card border-0">
             <img
               src="https://media.istockphoto.com/id/857146092/photo/sea-of-hands.jpg?s=612x612&w=0&k=20&c=mpZdzYstDIE_OGQ9PivyYdtA5Vq8wwbZF_uazfbfuwo="

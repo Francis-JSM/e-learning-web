@@ -6,7 +6,7 @@
   }
   .heading {
     font-family: "Aileron", sans-serif;
-    margin-left: 100px;
+    /* margin-left: 100px; */
     margin-top: 20px;
     font-weight: bold;
   }
@@ -45,13 +45,16 @@
     text-overflow: ellipsis;
     white-space: normal;
   }
+
+  @media (max-width: 768px) {
+  }
 </style>
 {% endblock head %} {% block body %}
 
-<h2 class="heading">
-  Here's a list of the <span class="colored">available courses</span>
-</h2>
 <div class="container my-4">
+  <h2 class="heading">
+    Here's a list of the <span class="colored">available courses</span>
+  </h2>
   <div class="row">
     {% for course in course %}
     <div class="col-lg-3 col-md-4 col-sm-6">
