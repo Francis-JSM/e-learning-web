@@ -1,0 +1,212 @@
+{% extends 'base.html' %} {% block title %}{{ course.title }} | Courses Details
+{% endblock title %} {% block head %}
+<style>
+  .card-body {
+    border-radius: 10px;
+  }
+  .list-group-item {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+  .list-group-item img {
+    filter: invert(100%);
+  }
+  .subscribe-button {
+    display: flex;
+    background-color: white;
+    font-weight: bold;
+    justify-content: center;
+    color: #b0b0b0 !important;
+    border: none;
+  }
+  .subscribe-button:hover {
+    background-color: #b0b0b0; /* Change background color */
+    color: white !important;
+  }
+  .card {
+    border-radius: 10px;
+    font-family: "Aileron", sans-serif;
+  }
+  .card-body a {
+    text-decoration: none; /* Remove underline */
+    color: #8e8e8e; /* Default text color */
+    transition: color 0.3s ease-in-out;
+  }
+
+  .card-body a:hover {
+    color: #9c6af9; /* Change text color on hover */
+  }
+</style>
+{% endblock head %} {% block body %}
+<div class="container my-4">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card-wrapper">
+        <div
+          class="card shadow p-3 mb-5 bg-white"
+          style="
+            border-radius: 10px;
+            width: 18rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+          "
+        >
+          <img
+            src="{{ course.thumbnail_url }}"
+            class="card-img-top"
+            alt="..."
+            style="border-radius: 10px"
+          />
+          <div class="card-body">
+            <h5 class="card-title" style="color: white">{{ course.title }}</h5>
+            <p class="card-text" style="color: white">
+              {{ course.description | truncatechars:100}}
+            </p>
+          </div>
+          <ul class="list-group list-group-flush" style="border-radius: 10px">
+            <li class="list-group-item">
+              <img src="https://img.icons8.com/android/20/000000/time.png" />
+              {{course.course_length}}
+            </li>
+            <li
+              class="list-group-item"
+              style="background: linear-gradient(135deg, #667eea, #764ba2)"
+            >
+              <img
+                src="https://img.icons8.com/material-outlined/20/000000/video.png"
+              />
+              {{ lecture.count }} Videos
+            </li>
+            <li
+              class="list-group-item"
+              style="background: linear-gradient(135deg, #667eea, #764ba2)"
+            >
+              {% if subscription_course %}<img
+                src="https://img.icons8.com/metro/20/000000/in-progress.png"
+              />
+              Progress
+              <span class="badge badge-danger"
+                >{{ subscription_course.progress }}</span
+              >
+              {% else %}<img
+                src="https://img.icons8.com/metro/20/000000/price-tag-euro.png"
+              />
+              {% if course.course_type == "PAID" %}₹ {{ course.course_price }}
+              /-{% else %}{{ course.course_type }}{% endif %}{% endif %}
+            </li>
+          </ul>
+          <div class="card-body">
+            {% if subscription_course %}<span class="badge badge-secondary"
+              >SUBSCRIBED</span
+            >{% else %}
+            <a
+              href="{% url 'Checkout' course.course_slug %}"
+              class="btn btn-info subscribe-button"
+              >Subscribe Now</a
+            >
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-8 px-0 mx-0">
+      <div
+        class="card shadow-lg p-3 mb-5 bg-white rounded"
+        style="
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          border-radius: 10px !important;
+        "
+      >
+        <div
+          class="card-header"
+          style="color: white; border: none; font-weight: bold"
+        >
+          {{ course.title }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title" style="color: white">{{ lecture.title }}</h5>
+          <div class="accordion" id="accordionExample">
+            {% for section in section %}
+            <div class="card">
+              <div
+                class="card-header"
+                style="background: linear-gradient(135deg, #667eea, #764ba2)"
+                id="headingOne{{ section.id }}"
+              >
+                <h2 class="mb-0">
+                  <button
+                    class="btn btn-block text-left"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseOne{{ section.id }}"
+                    aria-expanded="true"
+                    aria-controls="collapseOne{{ section.id }}"
+                    style="
+                      font-family: 'Aileron', sans-serif;
+                      font-weight: bold;
+                      color: white;
+                    "
+                  >
+                    <img
+                      src="https://img.icons8.com/pastel-glyph/15/000000/plus.png"
+                      style="filter: invert(100%)"
+                    />
+                    {{ section.title }}
+                  </button>
+                </h2>
+              </div>
+
+              <div
+                id="collapseOne{{ section.id }}"
+                class="collapse show"
+                aria-labelledby="headingOne{{ section.id }}"
+                data-parent="#accordionExample"
+              >
+                <div
+                  class="card-body"
+                  style="
+                    font-weight: bold;
+                    font-family: 'Aileron', sans-serif;
+                    color: #8e8e8e;
+                  "
+                >
+                  {% for lecture in lecture %}{% if lecture.section == section%}
+                  {% if lecture.lecture_type == "NOT PREMIUM" %}
+                  <li>
+                    <a
+                      href="{% url 'lecture_detail' course.course_slug lecture.lecture_slug %}"
+                      ><b style="font-size: medium">{{ lecture.title }}</b></a
+                    >
+                  </li>
+                  {% else %}
+                  <li>
+                    {% if subscription_course %}<a
+                      href="{% url 'lecture_detail' course.course_slug lecture.lecture_slug %}"
+                      ><b style="font-size: small">{{ lecture.title }}</b>
+                      <span class="badge badge-pill badge-secondary"
+                        >PREMIUM VIDEO</span
+                      ></a
+                    >
+                    {% else %}<b style="font-size: medium"
+                      >{{ lecture.title }}</b
+                    >
+                    <span class="badge badge-pill badge-secondary"
+                      >PREMIUM VIDEO</span
+                    >{% endif %}
+                  </li>
+                  {% endif %} {% else %}{% endif %}{% endfor %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %} {% block js %}
+<script>
+  $("#loginModal").modal();
+</script>
+{% endblock js %}

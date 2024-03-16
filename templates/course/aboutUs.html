@@ -1,0 +1,67 @@
+{%extends 'base.html'%} {%block title%}About Us{%endblock title%}{% block head%}
+<style>
+  .colored {
+    color: #9c6af9;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .heading {
+    padding-top: 40px;
+    padding-left: 160px;
+    font-family: "Aileron", sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+  }
+  .content {
+    flex: 1;
+    font-family: "Aileron", sans-serif;
+    font-size: 18px;
+    padding-left: 20px;
+    max-width: 50%;
+    box-sizing: border-box;
+    padding-top: 40px;
+    margin-bottom: 50px;
+  }
+  .content img {
+    padding: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+  @media screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .content {
+      max-width: 100%; /* Full width on smaller screens */
+    }
+  }
+</style>
+{% endblock head %} {% block body %}
+<h2 class="heading"><span class="colored">About</span> Us</h2>
+<div class="container">
+  <div class="content">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quis
+      quae fuga cumque animi vel nesciunt dolorem minus illum velit vitae dicta
+      soluta, nobis ipsum, enim omnis explicabo asperiores fugit. Lorem ipsum
+      dolor sit amet consectetur adipisicing elit. Ex voluptatum cupiditate
+      deleniti possimus. Et consequuntur, eaque amet rerum nam a dignissimos
+      iste similique modi ratione earum omnis, corrupti deserunt ipsam. Lorem
+      ipsum dolor sit, amet consectetur adipisicing elit. Quas pariatur nisi,
+      temporibus, dolor maiores nobis amet vel eaque fugit inventore laborum
+      animi iure id minus doloribus labore suscipit deleniti maxime.
+    </p>
+  </div>
+  <div class="content">
+    <img
+      src="https://blog.talent500.co/wp-content/uploads/2023/09/gd-group-discussion-tips.jpg"
+      alt="About Us Image"
+    />
+  </div>
+</div>
+{% endblock body %}
