@@ -79,7 +79,7 @@ def LoginUsernamevalidation(request):
         username = data['login_username']
 
         if not User.objects.filter(username=username).exists():
-            return JsonResponse({'login_username_error':'This username does not avilable please ragister first.'}) # 'status=400' write when debug
+            return JsonResponse({'login_username_error':'This username does not avilable please register first.'}) # 'status=400' write when debug
         return JsonResponse({'login_username_valid':True})
     
 def handleSignup(request):

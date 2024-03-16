@@ -1,31 +1,61 @@
-{% extends 'base.html' %}
-
-{% block title %}Course Blogs by Startup{% endblock title %}
-
-{% block head %}
-{% endblock head %}
-
-{% block body %}
-{% load humanize %}
+{%extends 'base.html'%}{%block title%}Course Blogs by startUP {%endblock title%}
+{% block head %} {% endblock head %}
+<style>
+  .colored {
+    color: #9c6af9;
+  }
+</style>
+{% block body %} {% load humanize%}
 <div class="container my-4">
-    <h2>Course Blogs by Startup</h2><br>
-    {% for post in allposts %}
-    <div class="card">
-        <strong class="d-inline-block text-primary px-2">Article by {{ post.author }}</strong>
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div class="mb-1 text-muted">{{ post.timeStamp | naturaltime }}</div>
-          <p class="card-text previews">{{ post.content| truncatechars:200 }}</p>
-          <a href="/blog/{{ post.slug }}" class="btn btn-primary">Read More...</a>
-        </div>
-      </div><br>
-      {% endfor %}
+  <h2 style="font-weight: bold">
+    Course Blogs by <span class="colored">Startup</span>
+  </h2>
+  <br />
+  {% for post in allposts %}
+  <div
+    class="card"
+    style="
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 10px;
+    "
+  >
+    <strong
+      class="d-inline-block text-primary px-3 py-3"
+      style="color: white !important"
+      >Article by {{ post.author }}</strong
+    >
+    <div class="card-body">
+      <h5 class="card-title" style="color: rgb(200, 200, 200)">
+        {{ post.title }}
+      </h5>
+      <div
+        class="mb-1 white text-muted"
+        style="color: rgb(200, 200, 200) !important"
+      >
+        {{ post.timeStamp | naturaltime }}
+      </div>
+      <p
+        class="card-text previews"
+        style="color: white !important; padding-top: 5px"
+      >
+        {{ post.content| truncatechars:200 }}
+      </p>
+      <a
+        href="/blog/{{ post.slug }}"
+        class="btn btn-primary"
+        style="background: white; color: #764ba2; font-weight: bold"
+        >Read More...</a
+      >
+    </div>
+  </div>
+  <br />
+  {% endfor %}
 </div>
 <script>
-  let previews = document.getElementsByClassName('previews');
-  Array.from(previews).forEach((element)=>{
+  let previews = document.getElementsByClassName("previews");
+  Array.from(previews).forEach((element) => {
     element.innerHTML = element.innerText;
-  })
+  });
 </script>
 
 {% endblock body %}

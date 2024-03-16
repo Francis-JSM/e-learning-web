@@ -93,7 +93,18 @@
 
       /* Login and Register buttons */
       .navbar-nav .btn {
-        font-size: 1rem;
+        padding: 10px 20px;
+        font-weight: bold;
+        background-color: #9c6af9 !important;
+        color: white !important;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .navbar-nav .btn:hover {
+        background-color: white !important;
+        color: #9c6af9 !important;
+        border: 1.5px solid #9c6af9;
       }
 
       /* Responsive margin adjustments */
@@ -231,7 +242,7 @@
               <!-- Button trigger modal -->
               <button
                 type="button"
-                class="btn btn-outline-success mx-2 my-1 btn-sm"
+                class="btn"
                 data-toggle="modal"
                 data-target="#loginModal"
               >
@@ -241,9 +252,10 @@
             <li class="nav-item">
               <button
                 type="button"
-                class="btn btn-success mx-1 my-1 btn-sm"
+                class="btn"
                 data-toggle="modal"
-                data-target="#singupModal"
+                data-target="#signupModal"
+                style="margin-left: 10px"
               >
                 Register
               </button>
@@ -350,7 +362,7 @@
     <!-- Singup Modal -->
     <div
       class="modal fade"
-      id="singupModal"
+      id="signupModal"
       tabindex="-1"
       aria-labelledby="singupModalLabel"
       aria-hidden="true"
@@ -358,7 +370,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="singupModalLabel">Ragister</h5>
+            <h5 class="modal-title" id="singupModalLabel">Register</h5>
             <button
               type="button"
               class="close"
@@ -489,7 +501,7 @@
                   <input
                     type="submit"
                     class="btn btn-primary"
-                    value="Ragister"
+                    value="Register"
                     id="registersubmit"
                   />
                 </form>
