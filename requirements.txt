@@ -8,4 +8,5 @@ razorpay==1.2.0
 requests==2.24.0
 sqlparse==0.3.1
 urllib3==1.25.11
+whitenoise==6.6.0
 gunicorn
